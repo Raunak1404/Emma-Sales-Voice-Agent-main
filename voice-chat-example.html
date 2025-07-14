@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Chat Component Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .example-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        h1 { color: #333; }
+        h2 { color: #666; }
+        code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .code-block {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Voice Chat Component Examples</h1>
+        <p>This page demonstrates different ways to use the Voice Chat Component.</p>
+        
+        <div class="example-section">
+            <h2>Example 1: Basic Usage (Bottom Right)</h2>
+            <p>A simple floating microphone button in the bottom right corner.</p>
+            <div class="code-block">
+&lt;script src="voice-chat-component.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    const voiceChat1 = new VoiceChatComponent({
+        wsUrl: 'wss://your-backend-url.com/realtime',
+        containerId: 'voice-chat-1',
+        position: 'bottom-right',
+        size: 'medium'
+    });
+&lt;/script&gt;
+            </div>
+        </div>
+        
+        <div class="example-section">
+            <h2>Example 2: Bottom Left, Large Size</h2>
+            <p>A larger microphone button positioned in the bottom left.</p>
+            <div class="code-block">
+&lt;script&gt;
+    const voiceChat2 = new VoiceChatComponent({
+        wsUrl: 'wss://your-backend-url.com/realtime',
+        containerId: 'voice-chat-2',
+        position: 'bottom-left',
+        size: 'large'
+    });
+&lt;/script&gt;
+            </div>
+        </div>
+        
+        <div class="example-section">
+            <h2>Example 3: Inline Usage</h2>
+            <p>Component embedded directly in page content.</p>
+            <div id="inline-voice-chat" style="text-align: center; margin: 20px 0;"></div>
+            <div class="code-block">
+&lt;div id="inline-voice-chat"&gt;&lt;/div&gt;
+&lt;script&gt;
+    const voiceChat3 = new VoiceChatComponent({
+        wsUrl: 'wss://your-backend-url.com/realtime',
+        containerId: 'inline-voice-chat',
+        showModal: false,
+        size: 'large'
+    });
+&lt;/script&gt;
+            </div>
+        </div>
+        
+        <div class="example-section">
+            <h2>Example 4: No Modal, Direct Chat</h2>
+            <p>Direct voice chat without modal popup.</p>
+            <div class="code-block">
+&lt;script&gt;
+    const voiceChat4 = new VoiceChatComponent({
+        wsUrl: 'wss://your-backend-url.com/realtime',
+        containerId: 'voice-chat-4',
+        position: 'top-right',
+        size: 'small',
+        showModal: false
+    });
+&lt;/script&gt;
+            </div>
+        </div>
+        
+        <div class="example-section">
+            <h2>Configuration Options</h2>
+            <ul>
+                <li><code>wsUrl</code>: WebSocket URL for your backend</li>
+                <li><code>containerId</code>: ID for the container element</li>
+                <li><code>position</code>: 'bottom-right', 'bottom-left', 'top-right', 'top-left'</li>
+                <li><code>size</code>: 'small', 'medium', 'large'</li>
+                <li><code>showModal</code>: true/false - show modal on click</li>
+                <li><code>debug</code>: true/false - enable debug logging</li>
+            </ul>
+        </div>
+        
+        <div class="example-section">
+            <h2>Public Methods</h2>
+            <ul>
+                <li><code>connect()</code>: Manually connect to WebSocket</li>
+                <li><code>disconnect()</code>: Disconnect and cleanup</li>
+                <li><code>setWebSocketUrl(url)</code>: Update WebSocket URL</li>
+                <li><code>destroy()</code>: Completely remove component</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Load the component -->
+    <script src="voice-chat-component.js"></script>
+    
+    <!-- Initialize examples -->
+    <script>
+        // Example 1: Basic bottom-right
+        const voiceChat1 = new VoiceChatComponent({
+            wsUrl: 'ws://localhost:8765/realtime', // Change this to your actual URL
+            containerId: 'voice-chat-1',
+            position: 'bottom-right',
+            size: 'medium',
+            debug: true
+        });
+        
+        // Example 2: Bottom-left, large
+        const voiceChat2 = new VoiceChatComponent({
+            wsUrl: 'ws://localhost:8765/realtime',
+            containerId: 'voice-chat-2',
+            position: 'bottom-left',
+            size: 'large',
+            debug: true
+        });
+        
+        // Example 3: Inline
+        const voiceChat3 = new VoiceChatComponent({
+            wsUrl: 'ws://localhost:8765/realtime',
+            containerId: 'inline-voice-chat',
+            showModal: false,
+            size: 'large',
+            debug: true
+        });
+        
+        // Example 4: Top-right, no modal
+        const voiceChat4 = new VoiceChatComponent({
+            wsUrl: 'ws://localhost:8765/realtime',
+            containerId: 'voice-chat-4',
+            position: 'top-right',
+            size: 'small',
+            showModal: false,
+            debug: true
+        });
+    </script>
+</body>
+</html>
