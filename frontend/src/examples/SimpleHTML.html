@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Chat Example</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .mic-container {
+            margin: 30px 0;
+        }
+        
+        .instructions {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        .instructions h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .instructions ul {
+            color: #666;
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">AI Sales Agent</h1>
+        <p class="subtitle">Click the microphone to start talking with Emma</p>
+        
+        <!-- This is where you'd place the React MicComponent -->
+        <div class="mic-container">
+            <div id="mic-component-root">
+                <!-- The React MicComponent will be rendered here -->
+                <button id="fallback-mic" style="
+                    background: #3b82f6;
+                    color: white;
+                    border: none;
+                    padding: 15px 30px;
+                    border-radius: 50px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    font-weight: 600;
+                    transition: all 0.2s;
+                ">
+                    🎤 Click to Talk
+                </button>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3>How to use:</h3>
+            <ul>
+                <li>Click the microphone button to start recording</li>
+                <li>Speak your question about Microsoft 365 products</li>
+                <li>The AI will respond with voice and relevant information</li>
+                <li>Click again to stop recording</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Fallback behavior for the static HTML
+        document.getElementById('fallback-mic').addEventListener('click', function() {
+            alert('To enable voice chat, integrate this with the React MicComponent!\n\nSee the integration example in MicComponentExample.tsx');
+        });
+    </script>
+</body>
+</html>
