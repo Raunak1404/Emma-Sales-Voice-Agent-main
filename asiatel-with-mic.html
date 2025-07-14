@@ -1,1 +1,24 @@
 hich
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <!-- Voice Chat Component -->
+  <script src="voice-chat-component.js"></script>
+  
+  <!-- Initialize Voice Chat -->
+  <script>
+    // Initialize the voice chat component
+    const voiceChat = new VoiceChatComponent({
+      wsUrl: 'wss://your-ngrok-url.ngrok.io/realtime', // Replace with your actual ngrok URL
+      containerId: 'asiatel-voice-chat',
+      position: 'bottom-right',
+      size: 'medium',
+      showModal: true,
+      debug: true // Set to false in production
+    });
+  </script>
+
+</body>
+
+</html>
