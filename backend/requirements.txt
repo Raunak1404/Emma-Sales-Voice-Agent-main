@@ -1,0 +1,39 @@
+# For real-time web server
+aiohttp==3.9.5
+
+# WebRTC & Media Processing
+aiortc
+av
+numpy
+
+# For Azure Speech and AI services
+azure-cognitiveservices-speech
+langchain-azure-ai
+azure-identity
+azure-search-documentsso
+azure-storage-blob
+
+# For LangChain core functionality
+langchain==0.1.20
+openai
+langchain-community
+langchain-text-splitters
+
+# For Vector Database
+qdrant-client
+langchain-qdrant
+
+# For loading environment variables
+python-dotenv
+python-multipart
+rich
+python-docx 
+openpyxl 
+pypdf 
+docx2txt
+pypdf2
+unstructured[pdf]
+lark
+pandas
+html5lib
+huggingface_hub[hf_xet]
