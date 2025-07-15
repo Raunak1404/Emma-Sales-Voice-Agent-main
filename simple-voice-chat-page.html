@@ -361,22 +361,32 @@
     </footer>
 
     <!-- Load Voice Chat Component -->
-    <script src="voice-chat-component.js"></script>
+    <script src="./voice-chat-component.js"></script>
     
     <!-- Initialize Voice Chat -->
     <script>
-        // Initialize the voice chat component
-        const voiceChat = new VoiceChatComponent({
-            wsUrl: 'ws://localhost:8765/realtime', // Replace with your actual ngrok URL
-            containerId: 'asiatel-voice-chat',
-            position: 'bottom-right',
-            size: 'medium',
-            showModal: true,
-            debug: true // Set to false in production
+        // Wait for component to load before initializing
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if component loaded
+            if (typeof VoiceChatComponent !== 'undefined') {
+                console.log('✅ VoiceChatComponent loaded successfully');
+                
+                // Initialize the voice chat component
+                const voiceChat = new VoiceChatComponent({
+                    wsUrl: 'ws://localhost:8765/realtime', // Replace with your actual ngrok URL
+                    containerId: 'asiatel-voice-chat',
+                    position: 'bottom-right',
+                    size: 'medium',
+                    showModal: true,
+                    debug: true // Set to false in production
+                });
+                
+                console.log('🎉 Voice chat component initialized:', voiceChat);
+            } else {
+                console.error('❌ VoiceChatComponent failed to load');
+                console.log('💡 Check if voice-chat-component.js file exists in the same directory');
+            }
         });
-        
-        // Add a simple test to verify the component loaded
-        console.log('Voice chat component initialized:', voiceChat);
     </script>
 </body>
 </html>
