@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mic Test - Simple Version</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .debug-info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .debug-info h3 {
+            margin-top: 0;
+            color: #fff;
+        }
+        
+        .test-button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 16px;
+        }
+        
+        .test-button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎤 Voice Chat Component Test</h1>
+        <p>This is a simple test page to debug the microphone component.</p>
+        
+        <div class="debug-info">
+            <h3>Debug Information:</h3>
+            <p>1. Check browser console for messages</p>
+            <p>2. Look for microphone button in bottom-right corner</p>
+            <p>3. Button should show 🎤 emoji</p>
+            <p>4. Click button to test functionality</p>
+        </div>
+        
+        <button class="test-button" onclick="testComponent()">Test Component Manually</button>
+        <button class="test-button" onclick="showDebugInfo()">Show Debug Info</button>
+        
+        <div id="debug-output" style="margin-top: 20px; text-align: left;"></div>
+    </div>
+
+    <!-- Load the component -->
+    <script src="voice-chat-component.js"></script>
+    
+    <script>
+        console.log('🚀 Test page script starting...');
+        
+        // Test functions
+        function testComponent() {
+            console.log('🧪 Manual test triggered');
+            const button = document.getElementById('voice-chat-btn-voice-chat-test');
+            if (button) {
+                console.log('✅ Found button:', button);
+                button.click();
+            } else {
+                console.error('❌ Button not found!');
+                alert('Button not found! Check console for details.');
+            }
+        }
+        
+        function showDebugInfo() {
+            const output = document.getElementById('debug-output');
+            output.innerHTML = `
+                <h4>Component Status:</h4>
+                <p><strong>Window.VoiceChatComponent:</strong> ${typeof window.VoiceChatComponent}</p>
+                <p><strong>Container exists:</strong> ${document.getElementById('voice-chat-test') ? 'Yes' : 'No'}</p>
+                <p><strong>Button exists:</strong> ${document.getElementById('voice-chat-btn-voice-chat-test') ? 'Yes' : 'No'}</p>
+                <p><strong>Total divs:</strong> ${document.querySelectorAll('div').length}</p>
+                <p><strong>Elements with voice-chat class:</strong> ${document.querySelectorAll('[class*="voice-chat"]').length}</p>
+            `;
+        }
+        
+        // Initialize component after page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📄 DOM loaded, initializing component...');
+            
+            try {
+                const voiceChat = new VoiceChatComponent({
+                    wsUrl: 'ws://localhost:8765/realtime',
+                    containerId: 'voice-chat-test',
+                    position: 'bottom-right',
+                    size: 'medium',
+                    debug: true
+                });
+                
+                console.log('✅ Component created:', voiceChat);
+                
+                // Wait a bit then check if it worked
+                setTimeout(() => {
+                    const container = document.getElementById('voice-chat-test');
+                    const button = document.getElementById('voice-chat-btn-voice-chat-test');
+                    
+                    console.log('🔍 Post-init check:');
+                    console.log('Container:', container);
+                    console.log('Button:', button);
+                    
+                    if (button) {
+                        console.log('🎉 SUCCESS! Microphone button should be visible!');
+                    } else {
+                        console.error('💥 FAILED! Button still not found!');
+                    }
+                }, 1000);
+                
+            } catch (error) {
+                console.error('💥 Error creating component:', error);
+            }
+        });
+        
+        console.log('✅ Test page script loaded');
+    </script>
+</body>
+</html>
