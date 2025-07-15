@@ -154,19 +154,38 @@ class VoiceChatComponent {
       .voice-chat-btn-small {
         width: 45px;
         height: 45px;
-        font-size: 18px;
       }
 
       .voice-chat-btn-medium {
         width: 60px;
         height: 60px;
-        font-size: 24px;
       }
 
       .voice-chat-btn-large {
         width: 75px;
         height: 75px;
-        font-size: 30px;
+      }
+
+      .voice-chat-mic-icon {
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+        transition: all 0.3s ease;
+      }
+
+      .voice-chat-btn-small .voice-chat-mic-icon {
+        width: 18px;
+        height: 18px;
+      }
+
+      .voice-chat-btn-medium .voice-chat-mic-icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      .voice-chat-btn-large .voice-chat-mic-icon {
+        width: 30px;
+        height: 30px;
       }
 
       .voice-chat-pulse-ring {
@@ -275,7 +294,6 @@ class VoiceChatComponent {
         border: none;
         background: linear-gradient(135deg, #007bff, #0056b3);
         color: white;
-        font-size: 32px;
         cursor: pointer;
         transition: all 0.3s ease;
         display: flex;
@@ -293,6 +311,12 @@ class VoiceChatComponent {
       .voice-chat-modal-mic.recording {
         background: linear-gradient(135deg, #dc3545, #c82333);
         animation: voice-chat-pulse 1s infinite;
+      }
+
+      .voice-chat-modal-mic .voice-chat-mic-icon {
+        width: 32px;
+        height: 32px;
+        fill: currentColor;
       }
 
       .voice-chat-recording-indicator {
@@ -362,6 +386,29 @@ class VoiceChatComponent {
     document.head.appendChild(style);
   }
 
+  // Get proper microphone SVG icon
+  getMicrophoneIcon() {
+    return `
+      <svg class="voice-chat-mic-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 1C10.3431 1 9 2.34315 9 4V12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12V4C15 2.34315 13.6569 1 12 1Z" fill="currentColor"/>
+        <path d="M6 10C6.55228 10 7 10.4477 7 11V12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12V11C17 10.4477 17.4477 10 18 10C18.5523 10 19 10.4477 19 11V12C19 15.866 15.866 19 12 19C8.13401 19 5 15.866 5 12V11C5 10.4477 5.44772 10 6 10Z" fill="currentColor"/>
+        <path d="M12 21C12.5523 21 13 21.4477 13 22C13 22.5523 12.5523 23 12 23C11.4477 23 11 22.5523 11 22C11 21.4477 11.4477 21 12 21Z" fill="currentColor"/>
+        <path d="M8 22C8 21.4477 8.44772 21 9 21H15C15.5523 21 16 21.4477 16 22C16 22.5523 15.5523 23 15 23H9C8.44772 23 8 22.5523 8 22Z" fill="currentColor"/>
+      </svg>
+    `;
+  }
+
+  // Get microphone off icon for recording state
+  getMicrophoneOffIcon() {
+    return `
+      <svg class="voice-chat-mic-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 3L21 21M9 9V12C9 13.6569 10.3431 15 12 15C12.3506 15 12.6872 14.9492 13 14.8582M15 11.34V4C15 2.34315 13.6569 1 12 1C10.3431 1 9 2.34315 9 4V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M17 11V12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 17V23M8 23H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    `;
+  }
+
   createHTML() {
     let container = document.getElementById(this.config.containerId);
     if (!container) {
@@ -384,7 +431,7 @@ class VoiceChatComponent {
           title="Start voice chat with Emma"
           type="button"
         >
-          🎤
+          ${this.getMicrophoneIcon()}
         </button>
         <div class="voice-chat-pulse-ring voice-chat-pulse-ring-${this.config.size}"></div>
         <div class="voice-chat-status" id="voice-chat-status-${this.config.containerId}">Ready</div>
@@ -406,7 +453,7 @@ class VoiceChatComponent {
               class="voice-chat-modal-mic"
               type="button"
             >
-              🎤
+              ${this.getMicrophoneIcon()}
             </button>
             
             <div id="voice-chat-modal-status-${this.config.containerId}" style="margin-top: 15px; color: #666;">
@@ -818,11 +865,23 @@ class VoiceChatComponent {
     // Update main button
     if (mainBtn) {
       mainBtn.className = `voice-chat-btn voice-chat-btn-${this.config.size} ${state}`;
+      // Change icon based on state
+      if (state === 'recording') {
+        mainBtn.innerHTML = this.getMicrophoneOffIcon();
+      } else {
+        mainBtn.innerHTML = this.getMicrophoneIcon();
+      }
     }
     
     // Update modal mic
     if (modalMic) {
       modalMic.className = `voice-chat-modal-mic ${state}`;
+      // Change icon based on state
+      if (state === 'recording') {
+        modalMic.innerHTML = this.getMicrophoneOffIcon();
+      } else {
+        modalMic.innerHTML = this.getMicrophoneIcon();
+      }
     }
     
     // Update recording indicator
