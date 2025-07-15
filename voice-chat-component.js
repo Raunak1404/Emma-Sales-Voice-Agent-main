@@ -203,6 +203,7 @@ class VoiceChatComponent {
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         transform: scale(0.9);
         transition: transform 0.3s ease;
+        position: relative;
       }
 
       .voice-chat-modal.active .voice-chat-modal-content {
@@ -328,29 +329,23 @@ class VoiceChatComponent {
   }
 
   createHTML() {
-    const container = document.getElementById(this.config.containerId);
+    let container = document.getElementById(this.config.containerId);
     if (!container) {
       // Create floating container
-      const floatingContainer = document.createElement('div');
-      floatingContainer.id = this.config.containerId;
-      floatingContainer.className = `voice-chat-component voice-chat-floating voice-chat-${this.config.position}`;
-      document.body.appendChild(floatingContainer);
+      container = document.createElement('div');
+      container.id = this.config.containerId;
+      container.className = `voice-chat-component voice-chat-floating voice-chat-${this.config.position}`;
+      document.body.appendChild(container);
     }
 
-    const targetContainer = document.getElementById(this.config.containerId);
-    targetContainer.innerHTML = `
+    container.innerHTML = `
       <div class="voice-chat-container">
         <button 
           id="voice-chat-btn-${this.config.containerId}" 
           class="voice-chat-btn voice-chat-btn-${this.config.size}"
           title="Start voice chat with Emma"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-            <path d="M12 19v4"/>
-            <path d="M8 23h8"/>
-          </svg>
+          🎤
         </button>
         <div class="voice-chat-pulse-ring voice-chat-pulse-ring-${this.config.size}"></div>
         <div class="voice-chat-status" id="voice-chat-status-${this.config.containerId}">Ready</div>
@@ -371,12 +366,7 @@ class VoiceChatComponent {
               id="voice-chat-modal-mic-${this.config.containerId}" 
               class="voice-chat-modal-mic"
             >
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                <path d="M12 19v4"/>
-                <path d="M8 23h8"/>
-              </svg>
+              🎤
             </button>
             
             <div id="voice-chat-modal-status-${this.config.containerId}" style="margin-top: 15px; color: #666;">

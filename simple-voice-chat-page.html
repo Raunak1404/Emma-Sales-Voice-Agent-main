@@ -367,13 +367,16 @@
     <script>
         // Initialize the voice chat component
         const voiceChat = new VoiceChatComponent({
-            wsUrl: 'wss://your-ngrok-url.ngrok.io/realtime', // Replace with your actual ngrok URL
+            wsUrl: 'ws://localhost:8765/realtime', // Replace with your actual ngrok URL
             containerId: 'asiatel-voice-chat',
             position: 'bottom-right',
             size: 'medium',
             showModal: true,
             debug: true // Set to false in production
         });
+        
+        // Add a simple test to verify the component loaded
+        console.log('Voice chat component initialized:', voiceChat);
     </script>
 </body>
 </html>
