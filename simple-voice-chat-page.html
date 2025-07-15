@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asiatel - Microsoft 365 Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #667eea;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Features Section */
+        .features {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #333;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Chat Section */
+        .chat-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .chat-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .chat-section p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .chat-highlight {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+        
+        .emma-avatar {
+            width: 80px;
+            height: 80px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .features h2, .chat-section h2 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Asiatel</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Microsoft 365 Solutions</h1>
+            <p>Empowering your business with cutting-edge collaboration tools, enhanced productivity, and enterprise-grade security. Transform the way your team works together.</p>
+            <a href="#services" class="cta-button">Explore Solutions</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="services">
+        <div class="container">
+            <h2>Why Choose Microsoft 365?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📧</div>
+                    <h3>Professional Email</h3>
+                    <p>Enterprise-grade email with advanced security features, unlimited storage, and seamless integration across all your devices.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>Office Applications</h3>
+                    <p>Access to Word, Excel, PowerPoint, and more with real-time collaboration features and automatic updates.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>Cloud Storage</h3>
+                    <p>Secure cloud storage with OneDrive, enabling access to your files from anywhere, anytime, on any device.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Advanced Security</h3>
+                    <p>Enterprise-level security with threat protection, data loss prevention, and compliance management.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Team Collaboration</h3>
+                    <p>Microsoft Teams integration for seamless communication, video conferencing, and project collaboration.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Business Intelligence</h3>
+                    <p>Power BI integration for advanced analytics, reporting, and data visualization to drive informed decisions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Section -->
+    <section class="chat-section" id="about">
+        <div class="container">
+            <h2>Meet Emma - Your AI Assistant</h2>
+            <p>Have questions about Microsoft 365? Emma is here to help! Click the microphone button to start a voice conversation.</p>
+            
+            <div class="chat-highlight">
+                <div class="emma-avatar">🤖</div>
+                <h3>Hi! I'm Emma</h3>
+                <p>I'm your AI-powered assistant from Asiatel. I can help you with:</p>
+                <ul style="text-align: left; margin-top: 20px;">
+                    <li>Microsoft 365 pricing and plans</li>
+                    <li>Feature comparisons and recommendations</li>
+                    <li>Implementation guidance</li>
+                    <li>Technical support questions</li>
+                </ul>
+                <p style="margin-top: 20px; font-weight: bold; color: #667eea;">
+                    Look for the microphone button in the bottom-right corner!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>69 Ubi Road 1 #06-21<br>
+                    Oxley Bizhub Singapore 408731</p>
+                    <p>Tel: 6521 6808<br>
+                    Email: enquiries@asiatel.com.sg</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <p><a href="#">Microsoft 365</a></p>
+                    <p><a href="#">Cloud Solutions</a></p>
+                    <p><a href="#">IT Support</a></p>
+                    <p><a href="#">Consulting</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <p><a href="#">About Asiatel</a></p>
+                    <p><a href="#">Our Team</a></p>
+                    <p><a href="#">Careers</a></p>
+                    <p><a href="#">News</a></p>
+                </div>
+            </div>
+            <p>&copy; 2024 Asiatel (S) Pte.Ltd. All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Load Voice Chat Component -->
+    <script src="voice-chat-component.js"></script>
+    
+    <!-- Initialize Voice Chat -->
+    <script>
+        // Initialize the voice chat component
+        const voiceChat = new VoiceChatComponent({
+            wsUrl: 'wss://your-ngrok-url.ngrok.io/realtime', // Replace with your actual ngrok URL
+            containerId: 'asiatel-voice-chat',
+            position: 'bottom-right',
+            size: 'medium',
+            showModal: true,
+            debug: true // Set to false in production
+        });
+    </script>
+</body>
+</html>
