@@ -121,73 +121,34 @@ class VoiceChatComponent {
         border: none;
         border-radius: 50%;
         cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.3s ease;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 
-          0 8px 32px rgba(59, 130, 246, 0.4),
-          0 4px 16px rgba(59, 130, 246, 0.2),
-          inset 0 1px 0 rgba(255, 255, 255, 0.3);
-        background: linear-gradient(135deg, #3b82f6, #1d4ed8, #1e40af);
+        box-shadow: 0 4px 20px rgba(0, 123, 255, 0.4);
+        background: linear-gradient(135deg, #007bff, #0056b3);
         color: white;
         position: relative;
         overflow: hidden;
         outline: none;
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .voice-chat-btn::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-        transition: left 0.6s ease;
       }
 
       .voice-chat-btn:hover {
-        transform: scale(1.1) translateY(-2px);
-        box-shadow: 
-          0 12px 40px rgba(59, 130, 246, 0.5),
-          0 8px 24px rgba(59, 130, 246, 0.3),
-          inset 0 1px 0 rgba(255, 255, 255, 0.4);
-        background: linear-gradient(135deg, #4f46e5, #3730a3, #312e81);
-      }
-
-      .voice-chat-btn:hover::before {
-        left: 100%;
-      }
-
-      .voice-chat-btn:active {
-        transform: scale(1.05) translateY(-1px);
-        transition: all 0.1s ease;
+        transform: scale(1.1);
+        box-shadow: 0 6px 25px rgba(0, 123, 255, 0.5);
       }
 
       .voice-chat-btn.recording {
-        background: linear-gradient(135deg, #ef4444, #dc2626, #b91c1c);
+        background: linear-gradient(135deg, #dc3545, #c82333);
         animation: voice-chat-pulse 1s infinite;
-        box-shadow: 
-          0 8px 32px rgba(239, 68, 68, 0.5),
-          0 4px 16px rgba(239, 68, 68, 0.3),
-          inset 0 1px 0 rgba(255, 255, 255, 0.3);
       }
 
       .voice-chat-btn.connecting {
-        background: linear-gradient(135deg, #f59e0b, #d97706, #b45309);
-        animation: voice-chat-connecting 2s infinite;
-        box-shadow: 
-          0 8px 32px rgba(245, 158, 11, 0.4),
-          0 4px 16px rgba(245, 158, 11, 0.2),
-          inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        background: linear-gradient(135deg, #ffc107, #e0a800);
       }
 
       .voice-chat-btn.error {
-        background: linear-gradient(135deg, #ef4444, #dc2626, #b91c1c);
-        animation: voice-chat-error 0.5s ease-in-out 3;
+        background: linear-gradient(135deg, #dc3545, #c82333);
       }
 
       .voice-chat-btn-small {
@@ -214,10 +175,9 @@ class VoiceChatComponent {
         left: 50%;
         transform: translate(-50%, -50%);
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(59, 130, 246, 0.4), rgba(59, 130, 246, 0.1));
+        background: rgba(0, 123, 255, 0.3);
         animation: voice-chat-pulse-ring 2s infinite;
         pointer-events: none;
-        backdrop-filter: blur(4px);
       }
 
       .voice-chat-pulse-ring-small {
@@ -241,18 +201,12 @@ class VoiceChatComponent {
         left: 50%;
         transform: translateX(-50%);
         font-size: 12px;
-        color: #374151;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(12px);
+        color: #666;
+        background: rgba(255, 255, 255, 0.9);
         padding: 4px 8px;
         border-radius: 4px;
         white-space: nowrap;
-        box-shadow: 
-          0 4px 16px rgba(0, 0, 0, 0.1),
-          0 2px 8px rgba(0, 0, 0, 0.05),
-          inset 0 1px 0 rgba(255, 255, 255, 0.8);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        font-weight: 500;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
 
       .voice-chat-modal {
@@ -261,15 +215,14 @@ class VoiceChatComponent {
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(8px);
+        background: rgba(0, 0, 0, 0.5);
         display: flex;
         align-items: center;
         justify-content: center;
         z-index: 10000;
         opacity: 0;
         pointer-events: none;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: opacity 0.3s ease;
       }
 
       .voice-chat-modal.active {
@@ -278,21 +231,16 @@ class VoiceChatComponent {
       }
 
       .voice-chat-modal-content {
-        background: linear-gradient(145deg, #ffffff, #f8fafc);
+        background: white;
         border-radius: 12px;
         padding: 30px;
         max-width: 400px;
         width: 90%;
         text-align: center;
-        box-shadow: 
-          0 25px 50px rgba(0, 0, 0, 0.25),
-          0 10px 25px rgba(0, 0, 0, 0.15),
-          inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         transform: scale(0.9);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform 0.3s ease;
         position: relative;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(20px);
       }
 
       .voice-chat-modal.active .voice-chat-modal-content {
@@ -307,21 +255,17 @@ class VoiceChatComponent {
         border: none;
         font-size: 24px;
         cursor: pointer;
-        color: #6b7280;
+        color: #666;
         padding: 0;
         width: 30px;
         height: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 50%;
-        transition: all 0.2s ease;
       }
 
       .voice-chat-modal-close:hover {
-        color: #374151;
-        background: rgba(107, 114, 128, 0.1);
-        transform: scale(1.1);
+        color: #333;
       }
 
       .voice-chat-modal-mic {
@@ -329,60 +273,26 @@ class VoiceChatComponent {
         height: 80px;
         border-radius: 50%;
         border: none;
-        background: linear-gradient(135deg, #3b82f6, #1d4ed8, #1e40af);
+        background: linear-gradient(135deg, #007bff, #0056b3);
         color: white;
         font-size: 32px;
         cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.3s ease;
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 20px auto;
-        box-shadow: 
-          0 8px 32px rgba(59, 130, 246, 0.4),
-          0 4px 16px rgba(59, 130, 246, 0.2),
-          inset 0 1px 0 rgba(255, 255, 255, 0.3);
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .voice-chat-modal-mic::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-        transition: left 0.6s ease;
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
       }
 
       .voice-chat-modal-mic:hover {
-        transform: scale(1.1) translateY(-2px);
-        box-shadow: 
-          0 12px 40px rgba(59, 130, 246, 0.5),
-          0 8px 24px rgba(59, 130, 246, 0.3),
-          inset 0 1px 0 rgba(255, 255, 255, 0.4);
-        background: linear-gradient(135deg, #4f46e5, #3730a3, #312e81);
-      }
-
-      .voice-chat-modal-mic:hover::before {
-        left: 100%;
-      }
-
-      .voice-chat-modal-mic:active {
-        transform: scale(1.05) translateY(-1px);
-        transition: all 0.1s ease;
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
       }
 
       .voice-chat-modal-mic.recording {
-        background: linear-gradient(135deg, #ef4444, #dc2626, #b91c1c);
+        background: linear-gradient(135deg, #dc3545, #c82333);
         animation: voice-chat-pulse 1s infinite;
-        box-shadow: 
-          0 8px 32px rgba(239, 68, 68, 0.5),
-          0 4px 16px rgba(239, 68, 68, 0.3),
-          inset 0 1px 0 rgba(255, 255, 255, 0.3);
       }
 
       .voice-chat-recording-indicator {
@@ -395,11 +305,10 @@ class VoiceChatComponent {
 
       .voice-chat-recording-bar {
         width: 3px;
-        height: 12px;
-        background: linear-gradient(to top, #ef4444, #f87171);
+        height: 16px;
+        background: #dc3545;
         border-radius: 2px;
         animation: voice-chat-recording-bars 1s infinite ease-in-out;
-        box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
       }
 
       .voice-chat-recording-bar:nth-child(1) { animation-delay: 0s; }
@@ -410,23 +319,6 @@ class VoiceChatComponent {
       @keyframes voice-chat-pulse {
         0%, 100% { opacity: 1; }
         50% { opacity: 0.7; }
-      }
-
-      @keyframes voice-chat-connecting {
-        0%, 100% { 
-          opacity: 1;
-          transform: scale(1);
-        }
-        50% { 
-          opacity: 0.8;
-          transform: scale(1.05);
-        }
-      }
-
-      @keyframes voice-chat-error {
-        0%, 100% { transform: translateX(0); }
-        25% { transform: translateX(-5px); }
-        75% { transform: translateX(5px); }
       }
 
       @keyframes voice-chat-pulse-ring {
@@ -441,14 +333,8 @@ class VoiceChatComponent {
       }
 
       @keyframes voice-chat-recording-bars {
-        0%, 100% { 
-          height: 8px;
-          opacity: 0.6;
-        }
-        50% { 
-          height: 20px;
-          opacity: 1;
-        }
+        0%, 100% { height: 8px; }
+        50% { height: 16px; }
       }
 
       @media (max-width: 768px) {
@@ -469,11 +355,6 @@ class VoiceChatComponent {
         }
         .voice-chat-top-left {
           left: 20px;
-        }
-        
-        .voice-chat-modal-content {
-          padding: 25px 20px;
-          margin: 20px;
         }
       }
     `;
